@@ -10,8 +10,8 @@
 (defvar test_openhrp::*rot* (unit-matrix 3))
 
 (defun test_openhrp::rpy-from-rot
-    (&key (rot (unit-matrix 3)) (rpy (instantiate float-vector 3)))
-  (test_openhrp::_rpy-from-rot rot rpy)
+    (&key (rot test_openhrp::*rot*) (rpy test_openhrp::*rpy*))
+  (test_openhrp::_rpy-from-rot (send rot :get-val 'entity) rpy)
   )
 
 (warning-message 1 "~%[test_openhrp] test_openhrp::rpy-from-rot~%")

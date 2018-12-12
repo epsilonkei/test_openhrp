@@ -41,11 +41,8 @@ set(CMAKE_CXX_FLAGS "-std=c++0x -O2")
 
 catkin_package()
 
-set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib:$ORIGIN/../../../lib:${OPENHRP_LIBRARY_DIRS}")
-
 add_library(test_openhrp SHARED src/impl_test_openhrp.cpp)
 TARGET_LINK_LIBRARIES(test_openhrp ${OPENHRP_LIBRARIES} ${Boost_LIBRARIES})
-## target_link_libraries(test_openhrp ${Boost_LIBRARIES} ${OPENHRP_LIBRARY_DIRS})
 
 message("---- ${OPENHRP_LIBRARIES}")
 
