@@ -39,12 +39,15 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 set(CMAKE_CXX_FLAGS "-std=c++0x -O2")
 
-set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib:$ORIGIN/../../../lib:${OPENHRP_LIBRARY_DIRS}")
-
 catkin_package()
 
-add_library(test_openhrp SHARED src/impl_test_openhrp.cpp ${Boost_LIBRARIES} ${OPENHRP_LIBRARY_DIRS})
-target_link_libraries(test_openhrp ${Boost_LIBRARIES} ${OPENHRP_LIBRARY_DIRS})
+set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib:$ORIGIN/../../../lib:${OPENHRP_LIBRARY_DIRS}")
+
+add_library(test_openhrp SHARED src/impl_test_openhrp.cpp)
+TARGET_LINK_LIBRARIES(test_openhrp ${OPENHRP_LIBRARIES} ${Boost_LIBRARIES})
+## target_link_libraries(test_openhrp ${Boost_LIBRARIES} ${OPENHRP_LIBRARY_DIRS})
+
+message("---- ${OPENHRP_LIBRARIES}")
 
 execute_process(COMMAND ln -snf ${CATKIN_DEVEL_PREFIX}/lib/libtest_openhrp.so ${PROJECT_SOURCE_DIR}/euslisp/libtest_openhrp.so)
 
